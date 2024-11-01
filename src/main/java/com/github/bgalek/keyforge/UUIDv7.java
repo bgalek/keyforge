@@ -3,6 +3,7 @@ package com.github.bgalek.keyforge;
 import java.nio.ByteBuffer;
 import java.security.SecureRandom;
 import java.time.Clock;
+import java.time.Instant;
 import java.util.UUID;
 
 class UUIDv7 {
@@ -38,5 +39,17 @@ class UUIDv7 {
         value[8] = (byte) ((value[8] & 0x3F) | 0x80);
 
         return value;
+    }
+
+    static Instant getIssuedAt(UUID uuid) {
+        long unixTimestamp = getTimeOrderedEpochTimestamp(uuid.getMostSignificantBits());
+        final long seconds = unixTimestamp / 10_000_000;
+        final long nanos = (unixTimestamp % 10_000_000) * 100;
+        return Instant.ofEpochSecond(seconds, nanos);
+    }
+
+    private static long getTimeOrderedEpochTimestamp(long msb) {
+        final long ticksPerMilli = 10_000;
+        return ((msb & 0xffffffffffff0000L) >>> 16) * ticksPerMilli;
     }
 }
