@@ -6,6 +6,9 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Forge for {@link MetadataApiKey}.
+ */
 public class MetadataKeyForge implements IKeyForge<MetadataApiKey> {
 
     @Override

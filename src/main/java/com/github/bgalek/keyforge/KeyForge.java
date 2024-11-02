@@ -3,6 +3,7 @@ package com.github.bgalek.keyforge;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.time.Clock;
+import java.time.ZoneId;
 import java.util.Base64;
 import java.util.UUID;
 
@@ -11,7 +12,7 @@ public class KeyForge implements IKeyForge<ApiKey> {
     private final UUIDv7 UUIDGenerator;
 
     public KeyForge() {
-        this(Clock.systemDefaultZone());
+        this(Clock.system(ZoneId.systemDefault()));
     }
 
     public KeyForge(Clock clock) {

@@ -5,6 +5,9 @@ import java.time.Instant;
 import java.util.Base64;
 import java.util.UUID;
 
+/**
+ * Represents an API key.
+ */
 public class ApiKey extends IdentifiableApiKey<UUID> {
 
     ApiKey(String prefix, String identifier, UUID uuid) {

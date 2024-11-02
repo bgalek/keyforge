@@ -10,6 +10,7 @@ public class TimestampedApiKeyBuilder<T extends ApiKey> extends IdentifiableApiK
         return this;
     }
 
+    @Override
     public TimestampedApiKeyBuilder<T> withType(ApiKeyType type) {
         this.prefix = type.prefix();
         return this;

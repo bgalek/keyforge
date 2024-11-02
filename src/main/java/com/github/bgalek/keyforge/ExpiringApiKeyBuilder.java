@@ -15,11 +15,13 @@ public class ExpiringApiKeyBuilder extends TimestampedApiKeyBuilder<ExpiringApiK
         return this;
     }
 
+    @Override
     public ExpiringApiKeyBuilder withType(ApiKeyType type) {
         this.prefix = type.prefix();
         return this;
     }
 
+    @Override
     public ExpiringApiKeyBuilder withIdentifier(String identifier) {
         this.identifier = identifier;
         return this;
