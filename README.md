@@ -3,7 +3,7 @@
 KeyForge is a Java library designed to generate and parse API keys
 with optional expiration functionality.
 
-# What Makes a Good API Key:
+## What Makes a Good API Key:
 
 - **Security**: API keys should be unique, hard to guess, and securely stored.
 - **Expiration**: Keys should have an expiration date to limit the risk if they are compromised.
