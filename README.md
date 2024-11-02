@@ -1,7 +1,13 @@
 # KeyForge Library
 
-KeyForge is a Java library designed to generate and parse API keys
-with optional expiration functionality.
+> KeyForge is a Java library designed to generate and parse API keys
+> with optional expiration functionality.
+
+[![Build](https://github.com/bgalek/keyforge/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/bgalek/keyforge/actions/workflows/build.yaml)
+![Codecov](https://img.shields.io/codecov/c/github/bgalek/keyforge.svg?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/bgalek/keyforge.svg?style=flat-square)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.bgalek.security.svg/keyforge?style=flat-square)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/bgalek/keyforge.svg?style=flat-square)
 
 ## What Makes a Good API Key:
 
