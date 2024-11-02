@@ -1,4 +1,4 @@
-# KeyForge Library
+# KeyForge
 
 > KeyForge is a Java library designed to generate and parse API keys
 > with optional expiration functionality.
