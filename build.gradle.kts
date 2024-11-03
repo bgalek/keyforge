@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
     errorprone("com.google.errorprone:error_prone_core:2.35.1")
-    testImplementation(platform("org.junit:junit-bom:5.11.2"))
+    testImplementation(platform("org.junit:junit-bom:5.11.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
