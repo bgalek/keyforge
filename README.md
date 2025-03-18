@@ -7,7 +7,6 @@
 ![Codecov](https://img.shields.io/codecov/c/github/bgalek/keyforge.svg?style=flat-square)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bgalek/keyforge.svg?style=flat-square)
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.bgalek/keyforge?style=flat-square)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/bgalek/keyforge.svg?style=flat-square)
 
 ## What Makes a Good API Key:
 
@@ -73,3 +72,10 @@ public class Example {
 }
 ```
 
+### Parsing API Keys
+
+```java
+    KeyForge keyForge = new KeyForge();
+    ApiKey apiKey = keyForge.parse("sk_YWNjb3VudD0xMjM");
+    System.out.println("Parsed API Key: %s".formatted(apiKey));
+```

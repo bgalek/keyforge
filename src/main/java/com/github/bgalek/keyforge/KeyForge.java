@@ -29,11 +29,11 @@ public class KeyForge implements IKeyForge<ApiKey> {
 
     @Override
     public ApiKey parse(String input) {
-        String[] prefix = input.split("_", 2);
-        String[] rest = new String(Base64.getUrlDecoder().decode(prefix[1]), StandardCharsets.UTF_8).split("-", 2);
-        BigInteger bigInteger = new BigInteger(rest[0], 16);
+        String[] prefix = input.split("_", 3);
+        String rest = new String(Base64.getUrlDecoder().decode(prefix[2]), StandardCharsets.UTF_8);
+        BigInteger bigInteger = new BigInteger(rest, 16);
         UUID value = new UUID(bigInteger.shiftRight(64).longValue(), bigInteger.longValue());
-        String identifier = rest[1];
+        String identifier = prefix[1];
         return new TimestampedApiKeyBuilder<>()
                 .withIdentifier(identifier)
                 .withType(ApiKeyType.fromPrefix(prefix[0]))

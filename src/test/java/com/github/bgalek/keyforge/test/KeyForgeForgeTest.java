@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.time.Clock;
 import java.time.Instant;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,10 +28,17 @@ class KeyForgeForgeTest {
     @DisplayName("Parsing test")
     void shouldParseProvidedKey() {
         KeyForge keyForge = new KeyForge(testClock);
-        ApiKey apiKey = keyForge.parse("sk_MDE5MmFhNzQwZmNhN2I2NDgyNmM3Zjg0YmM1ZTcyMjUtb3BhbmFwaQ");
+        ApiKey apiKey = keyForge.newKey()
+                .withValue(UUID.nameUUIDFromBytes("test".getBytes()))
+                .withIdentifier("openai")
+                .build();
 
-        assertEquals("opanapi", apiKey.getIdentifier());
-        assertEquals(Instant.parse("2024-10-20T15:03:05.930Z"), apiKey.getIssuedAt());
+        assertEquals("sk_openai_MDk4ZjZiY2Q0NjIxMzM3MzhhZGU0ZTgzMjYyN2I0ZjY", apiKey.toString());
+
+        ApiKey parsedApiKey = keyForge.parse("sk_openai_MDk4ZjZiY2Q0NjIxMzM3MzhhZGU0ZTgzMjYyN2I0ZjY");
+
+        assertEquals("openai", parsedApiKey.getIdentifier());
+        assertEquals(Instant.parse("2303-02-06T23:06:28.257Z"), parsedApiKey.getIssuedAt());
     }
 
     @Test
