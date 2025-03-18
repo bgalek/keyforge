@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
     signing
     jacoco
-    id("pl.allegro.tech.build.axion-release") version "1.18.8"
+    id("pl.allegro.tech.build.axion-release") version "1.18.18"
     id("com.adarshr.test-logger") version "4.0.0"
     id("net.ltgt.errorprone") version "4.1.0"
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
@@ -27,8 +27,8 @@ repositories {
 }
 
 dependencies {
-    errorprone("com.google.errorprone:error_prone_core:2.35.1")
-    testImplementation(platform("org.junit:junit-bom:5.11.2"))
+    errorprone("com.google.errorprone:error_prone_core:2.36.0")
+    testImplementation(platform("org.junit:junit-bom:5.12.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

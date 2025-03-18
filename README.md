@@ -6,7 +6,7 @@
 [![Build](https://github.com/bgalek/keyforge/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/bgalek/keyforge/actions/workflows/build.yaml)
 ![Codecov](https://img.shields.io/codecov/c/github/bgalek/keyforge.svg?style=flat-square)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bgalek/keyforge.svg?style=flat-square)
-![Maven Central](https://img.shields.io/maven-central/v/com.github.bgalek.security.svg/keyforge?style=flat-square)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.bgalek/keyforge?style=flat-square)
 
 ## What Makes a Good API Key:
 
