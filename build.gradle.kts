@@ -5,7 +5,7 @@ plugins {
     jacoco
     id("pl.allegro.tech.build.axion-release") version "1.21.1"
     id("com.adarshr.test-logger") version "4.0.0"
-    id("net.ltgt.errorprone") version "4.4.0"
+    id("net.ltgt.errorprone") version "5.0.0"
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
