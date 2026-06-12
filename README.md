@@ -23,7 +23,7 @@
 
 ```kts
 dependencies {
-    implementation("com.github.bgalek:keyforge:1.0.0")
+    implementation("com.github.bgalek:keyforge:1.0.2")
 }
 ```
 
