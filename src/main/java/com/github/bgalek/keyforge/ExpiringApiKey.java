@@ -22,17 +22,16 @@ public class ExpiringApiKey extends ApiKey {
         return expirationDate.isBefore(clock.instant());
     }
 
+    @Override
     public String toString() {
-        return String.format(
-                "%s_%s_%s",
+        String payload = "%s-%d".formatted(
+                this.getValue().toString().replace("-", ""),
+                this.getExpirationDate().getEpochSecond()
+        );
+        return "%s_%s_%s".formatted(
                 this.getPrefix(),
                 this.getIdentifier(),
-                Base64.getUrlEncoder()
-                        .withoutPadding()
-                        .encodeToString(("%s-%d".formatted(
-                                this.getValue().toString().replaceAll("-", ""),
-                                this.getExpirationDate().getEpochSecond()
-                        )).getBytes(StandardCharsets.UTF_8))
+                Base64.getUrlEncoder().withoutPadding().encodeToString(payload.getBytes(StandardCharsets.UTF_8))
         );
     }
 }

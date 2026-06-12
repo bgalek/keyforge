@@ -20,13 +20,12 @@ public class MetadataKeyForge implements IKeyForge<MetadataApiKey> {
     @Override
     public MetadataApiKey parse(String input) {
         String[] prefix = input.split("_", 2);
-        String[] rest = new String(Base64.getUrlDecoder().decode(prefix[1]), StandardCharsets.UTF_8).split("-", 1);
-        Map<String, String> metadata = Arrays.stream(rest[0].split("&"))
-                .map(entry -> entry.split("="))
-                .collect(Collectors.toMap(keyValue -> keyValue[0], keyValue -> keyValue[1]));
+        String decoded = new String(Base64.getUrlDecoder().decode(prefix[1]), StandardCharsets.UTF_8);
+        Map<String, String> metadata = Arrays.stream(decoded.split("&"))
+                .map(entry -> entry.split("=", 2))
+                .collect(Collectors.toMap(kv -> kv[0], kv -> kv[1]));
         return new MetadataApiKeyBuilder()
                 .withMetadata(metadata)
-                .withType(ApiKeyType.SECRET_KEY)
                 .withType(ApiKeyType.fromPrefix(prefix[0]))
                 .build();
     }

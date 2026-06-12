@@ -42,14 +42,6 @@ class UUIDv7 {
     }
 
     static Instant getIssuedAt(UUID uuid) {
-        long unixTimestamp = getTimeOrderedEpochTimestamp(uuid.getMostSignificantBits());
-        final long seconds = unixTimestamp / 10_000_000;
-        final long nanos = (unixTimestamp % 10_000_000) * 100;
-        return Instant.ofEpochSecond(seconds, nanos);
-    }
-
-    private static long getTimeOrderedEpochTimestamp(long msb) {
-        final long ticksPerMilli = 10_000;
-        return ((msb & 0xffffffffffff0000L) >>> 16) * ticksPerMilli;
+        return Instant.ofEpochMilli(uuid.getMostSignificantBits() >>> 16);
     }
 }

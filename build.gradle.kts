@@ -17,8 +17,8 @@ java {
     withJavadocJar()
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
     errorprone("com.google.errorprone:error_prone_core:2.49.0")
-    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testImplementation(platform("org.junit:junit-bom:6.1.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

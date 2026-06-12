@@ -9,8 +9,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Clock;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -21,7 +23,7 @@ class KeyForgeForgeTest {
 
     private final Clock testClock = Clock.fixed(
             Instant.parse("2024-10-20T15:03:05.930Z"),
-            Clock.systemDefaultZone().getZone()
+            ZoneOffset.UTC
     );
 
     @Test
@@ -29,7 +31,7 @@ class KeyForgeForgeTest {
     void shouldParseProvidedKey() {
         KeyForge keyForge = new KeyForge(testClock);
         ApiKey apiKey = keyForge.newKey()
-                .withValue(UUID.nameUUIDFromBytes("test".getBytes()))
+                .withValue(UUID.nameUUIDFromBytes("test".getBytes(StandardCharsets.UTF_8)))
                 .withIdentifier("openai")
                 .build();
 

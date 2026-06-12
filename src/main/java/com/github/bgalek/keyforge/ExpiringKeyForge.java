@@ -36,14 +36,14 @@ public class ExpiringKeyForge implements IKeyForge<ExpiringApiKey> {
 
     @Override
     public ExpiringApiKey parse(String input) {
-        String[] prefix = input.split("_", 2);
-        String[] rest = new String(Base64.getUrlDecoder().decode(prefix[1]), StandardCharsets.UTF_8).split("-", 3);
+        String[] parts = input.split("_", 3);
+        String identifier = parts[1];
+        String[] rest = new String(Base64.getUrlDecoder().decode(parts[2]), StandardCharsets.UTF_8).split("-", 2);
         BigInteger bigInteger = new BigInteger(rest[0], 16);
         UUID value = new UUID(bigInteger.shiftRight(64).longValue(), bigInteger.longValue());
         Instant expirationDate = Instant.ofEpochSecond(Long.parseLong(rest[1]));
-        String identifier = rest[2];
         return new ExpiringApiKeyBuilder()
-                .withType(ApiKeyType.fromPrefix(prefix[0]))
+                .withType(ApiKeyType.fromPrefix(parts[0]))
                 .withValue(value)
                 .withExpiration(expirationDate)
                 .withIdentifier(identifier)

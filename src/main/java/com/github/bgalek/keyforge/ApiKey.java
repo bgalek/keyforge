@@ -15,15 +15,7 @@ public class ApiKey extends IdentifiableApiKey<UUID> {
     }
 
     public Instant getIssuedAt() {
-        long unixTimestamp = getTimeOrderedEpochTimestamp(this.getValue().getMostSignificantBits());
-        final long seconds = unixTimestamp / 10_000_000;
-        final long nanos = (unixTimestamp % 10_000_000) * 100;
-        return Instant.ofEpochSecond(seconds, nanos);
-    }
-
-    private long getTimeOrderedEpochTimestamp(long msb) {
-        final long ticksPerMilli = 10_000;
-        return ((msb & 0xffffffffffff0000L) >>> 16) * ticksPerMilli;
+        return UUIDv7.getIssuedAt(this.getValue());
     }
 
     @Override
@@ -32,7 +24,7 @@ public class ApiKey extends IdentifiableApiKey<UUID> {
                 "%s_%s_%s",
                 this.getPrefix(),
                 this.getIdentifier(),
-                Base64.getUrlEncoder().withoutPadding().encodeToString((this.getValue().toString().replaceAll("-", "")).getBytes(StandardCharsets.UTF_8))
+                Base64.getUrlEncoder().withoutPadding().encodeToString(this.getValue().toString().replace("-", "").getBytes(StandardCharsets.UTF_8))
         );
     }
 }

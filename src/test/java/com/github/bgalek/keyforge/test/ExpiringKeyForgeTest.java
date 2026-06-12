@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Stream;
 
@@ -21,17 +22,22 @@ class ExpiringKeyForgeTest {
 
     private final Clock testClock = Clock.fixed(
             Instant.parse("2024-10-20T15:03:05.930Z"),
-            Clock.systemDefaultZone().getZone()
+            ZoneOffset.UTC
     );
 
     @Test
     @DisplayName("Parsing test")
     void shouldParseProvidedKey() {
         ExpiringKeyForge keyForge = new ExpiringKeyForge(testClock, Duration.ofDays(1));
-        ExpiringApiKey apiKey = keyForge.parse("sk_MDE5MmFhNzQwZmNhNzMxMGI3Nzc2MWY2NjBkMWZlMjItMTcyOTUyMjk4NS1vcGFuYXBp");
+        ExpiringApiKey original = keyForge.newKey()
+                .withIdentifier("opanapi")
+                .build();
+        ExpiringApiKey parsed = keyForge.parse(original.toString());
 
-        assertEquals("opanapi", apiKey.getIdentifier());
-        assertEquals(Instant.parse("2024-10-20T15:03:05.930Z"), apiKey.getIssuedAt());
+        assertEquals(original.getIdentifier(), parsed.getIdentifier());
+        assertEquals(original.getIssuedAt(), parsed.getIssuedAt());
+        assertEquals(original.getExpirationDate().truncatedTo(ChronoUnit.SECONDS), parsed.getExpirationDate());
+        assertEquals(original.getType(), parsed.getType());
     }
 
     @Test
